@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Bootstrap Form</h2>
+        <form>
+            <div class="form-group">
+                <label for="input1">Input 1</label>
+                <input id="input1" type="text" class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input2">Input 1</label>
+                <input id="input2" type="text" class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input3">Input 1</label>
+                <input id="input3" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input4">Input 1</label>
+                <input id="input4" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input5">Input 1</label>
+                <input id="input5" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input6">Input 1</label>
+                <input id="input6" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input7">Input 1</label>
+                <input id="input7" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input8">Input 1</label>
+                <input id="input8" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input9">Input 1</label>
+                <input id="input9" type="text" class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input10">Input 1</label>
+                <input id="input10" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input11">Input 1</label>
+                <input id="input11" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input12">Input 1</label>
+                <input id="input12" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input13">Input 1</label>
+                <input id="input13" type="text"  class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input14">Input 1</label>
+                <input id="input14" type="text" class="form-control" id="input1">
+            </div>
+            <div class="form-group">
+                <label for="input15">Input 15</label>
+                <input id="input15" type="text" class="form-control" id="input15">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+<script src="jquery.min.js"></script>/>
+<script src="jquery.js"></script>
+<script src="jquery.fullpage.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    let contador = 0;
+    let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.@-\s]+$/;
+    window.alert = function(al, $){
+
+    return function(msg) {
+        if (contador > 1){
+            return false;
+        }
+        al.call(window,msg);
+        contador = 0;
+        //flag = false;
+    };
+    }(window.alert, window.jQuery);
+
+    $("input").on("keypress", function(event){
+        let val = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        console.log("entra en keypress");
+        if (!regex.test(val)){
+            console.log("keypress invalido");
+            event.preventDefault();
+            contador += 1;
+            alert("Error, caracter no permitido");
+            return false;
+        }
+        return true;
+    });
+
+    $("input").on("textInput", function(e) {
+        let keyCode = String.fromCharCode(e.originalEvent.data.charCodeAt(0));
+        console.log("entra en el textinput");
+        if (!regex.test(keyCode)){
+            console.log("textinput invalido");
+            e.preventDefault();
+            contador += 1;
+            alert("Error, caracter no permitido");
+            return false;
+        }
+        return true;
+    });
+
+    $("input").on('paste', function(e) {
+        let pegando = (event.clipboardData || window.clipboardData).getData('text');
+        console.log("entra en el paste");
+        if (!regex.test(pegando)) {
+            e.preventDefault();
+            contador += 1;
+            alert("Error, caracter no aceptado");
+            return false;
+        } 
+        return true;
+    });
+
+});
+
+    //function validarAlfanumerico(str, long) {
+//    var value = str.value;
+//    if (value.length > long) {
+//        alert('El campo excede la longitud permitida');
+//        return false;
+//    } else {
+//        if (/[^a-zA-Z0-9À-ú.@-\s]+$/.test(value)) {
+//            alert('El caracter ingresado no es permitido');
+//            return false;
+//        } else { //si se va algún caracter entre letras
+//            var desired = value.replace(/[^À-ú.@-\w\s]/gi, '')
+//            str.value = desired;
+//        }
+//        return true;
+//    }
+//}
+
+//function validarAlfanumerico(inputX){
+//    let value = inputX.value;
+//    if (/[^a-zA-Z0-9À-ú.@-\s]+$/.test(value)) {
+//        alert('El caracter ingresado no es permitido');
+//        //inputX.value = "";
+//        return false;
+//    } else { //si se va algún caracter entre letras
+//        var desired = value.replace(/[^À-ú.@-\w\s]/gi, '')
+//        str.value = desired;
+//    }
+//}
+
+    //function validarCaracter(key) {
+    //    let regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.@-\s]+$/;
+    //    return regex.test(key);
+    //}
+
+    function validarXd(inputXd){
+
+        //let id = "#"+inputXd.id;
+        //if (!validarCaracter(inputXd.value)){
+        //    alert("Caracter no permitido!");
+        //}
+
+        //$(id).on('textInput', function(e) {
+        //    var keyCode = e.originalEvent.data.charCodeAt(0);
+        //    if (!validarCaracter(String.fromCharCode(keyCode))) {
+        //        e.preventDefault();
+        //        alert("Caracter no aceptado!");
+        //        return false;
+        //    } else {
+        //        //$("#divTelefono").removeClass("error");
+        //    }
+        //});
+
+
+        //$(id).on('input', function(e) {
+        //    var input = $(this);
+        //    var val = input.val();
+        //    if (!validarCaracter(val)) {
+        //    //    $("#divTelefono").addClass("error");
+        //        alert("Error, caracter no aceptado");
+        //    } else {
+        //    //    $("#divTelefono").removeClass("error");
+        //    }
+        //});
+
+        //$(id).on('paste', function(e) {
+        //    let pegando = (event.clipboardData || window.clipboardData).getData('text');
+        //    if (!validarCaracter(pegando)) {
+        //    //$("#divTelefono").addClass("error");
+        //    alert("Error, caracter no aceptado");
+        //    e.preventDefault();
+        //    return false;
+        //} else {
+        //    //$("#divTelefono").removeClass("error");
+        //}
+        //});
+
+        //$(id).bind('keypress', function(event) {
+        //    //var regex = new RegExp("^[0-9]+$");
+        //    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        //    if (!validarCaracter(key)) {
+        //        event.preventDefault();
+        //        alert("Error, caracter no aceptado");
+        //        return false;
+        //    }
+        //});
+
+    }
+    
+
+    
+</script>
+</html>
+
